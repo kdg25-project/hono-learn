@@ -2,24 +2,18 @@
   "name": "hono-learn",
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "dev": "bun run --hot src/index.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.8.0",
-    "@types/better-sqlite3": "^7.6.13",
+    "@libsql/client": "^0.17.3",
     "@types/node": "^25.7.0",
-    "better-sqlite3": "^12.10.0",
     "drizzle-kit": "^0.31.10",
     "drizzle-orm": "^0.45.2",
     "hono": "^4.12.18",
     "zod": "^4.4.3"
-  },
-  "devDependencies": {
-    "wrangler": "^4.4.0"
   }
 }
