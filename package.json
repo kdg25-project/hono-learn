@@ -8,9 +8,11 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@better-auth/drizzle-adapter": "^1.6.11",
     "@hono/zod-validator": "^0.8.0",
     "@libsql/client": "^0.17.3",
     "@types/node": "^25.7.0",
+    "better-auth": "^1.6.11",
     "drizzle-kit": "^0.31.10",
     "drizzle-orm": "^0.45.2",
     "hono": "^4.12.18",

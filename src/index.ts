@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
-import userRoute from './routes/user';
 import { bearerAuth } from 'hono/bearer-auth';
 import { cors } from 'hono/cors';
+import { auth } from './lib/auth';
 
 const token = 'honoiscool';
 
@@ -18,8 +18,9 @@ app.use(
     credentials: true,
   })
 );
+app.on(["POST", "GET"], "/api/auth/*", (c) => auth.handler(c.req.raw));
 
-const api = new Hono().route('/user', userRoute);
+const api = new Hono()
 
 const _routes = app.route('/api', api);
 
