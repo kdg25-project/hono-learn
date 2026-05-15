@@ -1,18 +1,9 @@
 import { Hono } from 'hono';
-import { z } from 'zod';
 import { zValidator } from '@hono/zod-validator';
 import { db } from '../../db';
 import { users } from '../../db/schema';
 import { eq } from 'drizzle-orm';
-
-const getUserByIdParam = z.object({
-  id: z.coerce.number().int().positive(),
-});
-
-const createUserBody = z.object({
-  name: z.string(),
-  email: z.email(),
-});
+import { createUserBody, getUserByIdParam } from '../../schema/user';
 
 const userRoute = new Hono()
   .get('/', async (c) => {
