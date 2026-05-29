@@ -1,12 +1,9 @@
 import { Hono } from 'hono';
-import { bearerAuth } from 'hono/bearer-auth';
 import { cors } from 'hono/cors';
 import { auth } from './lib/auth';
+import { AuthVariables } from './lib/auth';
 
-const token = 'honoiscool';
-
-const app = new Hono();
-app.use('/api/*', bearerAuth({ token }));
+const app = new Hono<{ Variables: AuthVariables }>()
 app.use(
   '*',
   cors({
@@ -20,7 +17,7 @@ app.use(
 );
 app.on(["POST", "GET"], "/api/auth/*", (c) => auth.handler(c.req.raw));
 
-const api = new Hono()
+const api = new Hono<{ Variables: AuthVariables }>()
 
 const _routes = app.route('/api', api);
 
